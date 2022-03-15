@@ -46,3 +46,6 @@ kill_process() {
 
 # Spin default setup
 source /etc/zsh/zshrc.default.inc.zsh
+
+# Clear annoying right-aligned instance number
+RPROMPT=''
