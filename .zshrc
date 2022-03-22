@@ -47,5 +47,22 @@ kill_process() {
 # Spin default setup
 source /etc/zsh/zshrc.default.inc.zsh
 
+# Jeff's snazzy clean git branch
+function git_branch() {
+  branch=$(git branch --show-current 2> /dev/null)
+  if [[ $branch == "" ]]; then
+    echo ' '
+  else
+    echo '\e[35m('$branch')\e[0m '
+  fi
+}
+
+precmd() {
+ git_branch
+}
+
+setopt prompt_subst
+PROMPT='/%c $ '
+
 # Clear annoying right-aligned instance number
 RPROMPT=''
