@@ -36,6 +36,14 @@ alias typeme='sorbet_check'
 alias packme='packwerk_check'
 alias graphme='graphql_dump'
 
+# Stop shopify/shopify and restart it as an inline process for debugging
+alias core_stop='systemctl stop proc-shopify--shopify@server.service'
+alias core_start_debug='FEATURE_SET=default PRIVACY_LEVEL=default DISABLE_INLINE_JOBS=1 bin/rails server'
+
+# Create a new Storefront API access app, then console in and run
+# ApiClient.last.beta.enable("storefront_api_metaobject")
+alias core_sf_token='bin/rake dev:custom_storefront:setup SHOP_ID=1'
+
 port_process() {
   lsof -n -i4TCP:$1 | grep LISTEN
 }
